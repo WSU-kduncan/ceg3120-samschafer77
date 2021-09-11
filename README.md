@@ -1,3 +1,4 @@
+
 # CEG3120 - Project 1
 # Sam Schafer
 * on server side/ AWS instance, how to:
@@ -11,4 +12,4 @@
     - commit usage and description: git commit commits all the changes made on a project.
     - push usage and description: git push pushes the local commit to the to the git server.
 * Proof
-<img src=">Screenshots/Screenshot of repo on AWS instance.png">
+<img width="570" alt="Screenshot of repo on AWS instance" src="https://user-images.githubusercontent.com/78572518/132931438-37a545d5-9fff-427b-b00f-d1d90224c6ab.png">
