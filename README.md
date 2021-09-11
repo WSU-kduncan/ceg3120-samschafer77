@@ -1,6 +1,14 @@
 # CEG3120 - Project 1
 # Sam Schafer
-* I created a user on my Ubuntu AWS server called git and added ssh permissions and keys to that user.
-* I then cloned my ceg3120 github repository to the server.
-* I updated this README.md and added screen shots for proof of what was done above.
-* I then commited and pushed to github and then fetched all the updates on my Ubuntu AWS server and pull/merged the changes onto that server.
+* on server side/ AWS instance, how to:
+    - setup for repositories: You must git init --bare to create an empty git repository.
+    - users, folders, permissions: You must create a user called git using sudo useradd git to create a user named git. To create a folder you must use the mkdir command to create a folder. To create permissions you use chmod +rwx to add permissions.
+    - SSH key directions: under a user in /.ssh you can create a authorized_keys folder to store all of the SSH keys.
+* Usage guide
+    - clone usage and description: to clone a repository you must git clone a repo and you download all files inside of the repository.
+    - init usage and description: git init initializes a git repository.
+    - add usage and description: git add adds a change in the working directory to the staging area.
+    - commit usage and description: git commit commits all the changes made on a project.
+    - push usage and description: git push pushes the local commit to the to the git server.
+* Proof
+<img src=">Screenshots/Screenshot of repo on AWS instance.png">
