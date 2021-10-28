@@ -1,5 +1,6 @@
-*Project4*
-*Sam Schafer*
+**Project4**
+
+**Sam Schafer**
 
 1. A template is a declaration of an AWS resource that makes up a stack. The stack used in this project will build a linux VM from a .yml file. The .yml template contains parameters that will edit properties when creating the cloud formation from this template.
 
