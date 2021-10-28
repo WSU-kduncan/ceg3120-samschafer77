@@ -1,0 +1,84 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  Sam Schafer Tempalte to create a VPC.
+Tags:
+  - Key: CF-instance
+    Value: cfinstance
+Mappings:
+  AWSInstanceType2Arch:  # Supported architectures (x64bit only)
+    t2.micro:
+      Arch: HVM64
+  AWSRegionUbuntu: # Amazon Linux AMI 2018.03
+    us-east-1:   # N. Virginia
+      PV64: ami-0023040df18933030
+      HVM64: ami-0422d936d535c63b1
+      HVMG2: NOT_SUPPORTED
+Resources:
+  myVPC:
+  Type: AWS::EC2::VPC
+  Properties:
+    CidrBlock: 10.0.0.0/16
+    EnableDnsSupport: 'true'
+    EnableDnsHostnames: 'true'
+    Tags:
+     - Key: CF-instance
+       Value: cfinstance
+    mySubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: myVPC
+      CidrBlock: 10.0.0.0/24
+      AvailabilityZone: "us-east-1a"
+      Tags:
+      - Key: CF-instance
+        Value: cfinstance
+SSHSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable SSH from home
+      SecurityGroupIngress:
+      - CidrIp: 71.79.57.245/32
+      fromPort: 22
+      IpProtocol: tcp
+      ToPort: 22
+  SSHSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable SSH from Wright State
+      SecurityGroupIngress:
+      - CidrIp: 130.108.0.0/24
+      fromPort: 22
+      IpProtocol: tcp
+      ToPort: 22
+AWS::CloudFormation::Init: 
+  configSets: 
+    ascending: 
+      - "config1"
+      - "config2"
+      - "config3"
+    descending: 
+      - "config3"
+      - "config2"
+      - "config1"
+  config1: 
+    commands: 
+      test: 
+        command: "sudo apt install git"
+        env: 
+          CFNTEST: "I come from config1."
+        cwd: "~"
+  config2: 
+    commands: 
+      test: 
+        command: "sudo apt install python3.8"
+        env: 
+          CFNTEST: "I come from config2"
+        cwd: "~"
+  config3: 
+    commands: 
+      test: 
+        command: "sudo apt install python3-pip"
+        env: 
+          CFNTEST: "I come from config3"
+        cwd: "~"
